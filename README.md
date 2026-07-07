@@ -1,2 +1,0 @@
-# Accounting
-accounting software
