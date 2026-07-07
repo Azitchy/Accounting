@@ -4,7 +4,7 @@ import Icon from './Icon'
 
 function SidebarNavigation() {
   return (
-    <aside className="flex flex-col gap-2 bg-slate-950 px-2.5 py-3 text-white shadow-[inset_-1px_0_0_rgba(255,255,255,0.05)] lg:min-h-screen">
+    <aside className="flex h-full flex-col gap-2 bg-slate-950 px-2.5 py-3 text-white shadow-[inset_-1px_0_0_rgba(255,255,255,0.05)]">
       <div className="rounded-[18px] bg-[linear-gradient(180deg,#2a305b_0%,#252a4f_100%)] px-4 py-2.5 text-[0.92rem] font-semibold text-slate-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
         Open Anything (Ctrl+F)
       </div>
@@ -21,17 +21,31 @@ function SidebarNavigation() {
   )
 }
 
-function SidebarItem({ label, icon, active = false }) {
+function SidebarItem({ label, icon, to }) {
   const showPlus = label === 'Parties' || label === 'Items'
-  const to = label === 'My Company' ? '/my-company' : '/'
+  const itemClasses =
+    'grid grid-cols-[22px_1fr_auto] items-center gap-2.5 px-3 py-2.5 text-[0.95rem] font-semibold text-white no-underline'
+
+  if (!to) {
+    return (
+      <button type="button" className={itemClasses}>
+        <span className="grid place-items-center text-white">
+          <Icon name={icon} />
+        </span>
+        <span className="whitespace-nowrap">{label}</span>
+        <span className="text-white/80">{showPlus ? '+' : 'v'}</span>
+      </button>
+    )
+  }
 
   return (
     <NavLink
       to={to}
+      end={to === '/'}
       className={({ isActive }) =>
         [
-          'grid grid-cols-[22px_1fr_auto] items-center gap-2.5 px-3 py-2.5 text-[0.95rem] font-semibold text-white no-underline',
-          active || isActive ? 'bg-[#2a2d5f] shadow-[inset_3px_0_0_#ff4f87]' : '',
+          itemClasses,
+          isActive ? 'bg-[#2a2d5f] shadow-[inset_3px_0_0_#ff4f87]' : '',
         ].join(' ')
       }
     >
