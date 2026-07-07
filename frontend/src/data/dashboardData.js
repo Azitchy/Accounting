@@ -1,7 +1,7 @@
 export const sidebarSections = [
   { label: 'Home', icon: 'home', to: '/' },
   { label: 'Parties', icon: 'users', to: '/parties' },
-  { label: 'Items', icon: 'bag' },
+  { label: 'Items', icon: 'bag', to: '/items' },
   { label: 'Sale', icon: 'receipt' },
   { label: 'Purchase & Expense', icon: 'cart' },
   { label: 'Grow Your Business', icon: 'trend' },
